@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <title>TutorConnect - Find Your Perfect Tutor</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +14,8 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./styles.css">
 </head>
 
@@ -59,19 +60,19 @@
             </div>
             <div class="popup-body">
                 <form id="login-form">
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="100">
                         <div class="input-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <input type="email" placeholder="Your Email" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="200">
                         <div class="input-icon">
                             <i class="fas fa-lock"></i>
                         </div>
                         <input type="password" placeholder="Your Password" required>
                     </div>
-                    <div class="form-options">
+                    <div class="form-options" data-aos="fade-up" data-aos-delay="300">
                         <label class="checkbox-container">
                             <input type="checkbox">
                             <span class="checkmark"></span>
@@ -79,9 +80,9 @@
                         </label>
                         <a href="#" class="forgot-password">Forgot Password?</a>
                     </div>
-                    <button type="submit" class="btn-submit">Log In</button>
+                    <button type="submit" class="btn-submit" data-aos="fade-up" data-aos-delay="400">Log In</button>
                 </form>
-                <div class="popup-footer">
+                <div class="popup-footer" data-aos="fade-up" data-aos-delay="500">
                     <p>Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a></p>
                 </div>
             </div>
@@ -97,96 +98,101 @@
             </div>
             <div class="popup-body">
                 <form id="signup-form">
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="100">
                         <div class="input-icon">
                             <i class="fas fa-user"></i>
                         </div>
                         <input type="text" placeholder="Your Name" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="200">
                         <div class="input-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <input type="email" placeholder="Your Email" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="300">
                         <div class="input-icon">
                             <i class="fas fa-lock"></i>
                         </div>
                         <input type="password" id="password" placeholder="Your Password" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="400">
                         <div class="input-icon">
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <input type="password" id="confirm-password" placeholder="Confirm Password" required>
                     </div>
-                    <button type="submit" class="btn-submit">Sign Up</button>
+                    <button type="submit" class="btn-submit" data-aos="fade-up" data-aos-delay="500">Sign Up</button>
                 </form>
-                <div class="popup-footer">
+                <div class="popup-footer" data-aos="fade-up" data-aos-delay="600">
                     <p>Already have an account? <a href="#" id="switch-to-login">Log In</a></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Hero Section Carousel -->
     <!-- Hero Section with Custom Carousel -->
     <section id="home" class="hero">
-        <div class="custom-carousel-container">
-            <div class="slides-container">
+        <div class="hero-carousel">
+            <div class="carousel-container">
                 <!-- Slide 1 -->
-                <div class="carousel-slide">
-                    <div class="slide-bg"
-                        style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655')">
-                    </div>
+                <div class="carousel-slide active">
+                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655')"></div>
                     <div class="slide-content">
                         <div class="slide-content-inner">
                             <span class="slide-subtitle">Master Numbers</span>
                             <h2 class="slide-title">Expert Math Tutoring</h2>
-                            <p class="slide-description">Unlock your potential with personalized math lessons from
-                                experienced tutors</p>
-                            <a href="#" class="slide-button">Learn More</a>
+                            <p class="slide-description">Unlock your potential with personalized math lessons from experienced tutors</p>
+                            <a href="#subjects" class="slide-button">Learn More</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Slide 2 -->
                 <div class="carousel-slide">
-                    <div class="slide-bg"
-                        style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40')">
-                    </div>
+                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40')"></div>
                     <div class="slide-content">
                         <div class="slide-content-inner">
                             <span class="slide-subtitle">Discover & Explore</span>
                             <h2 class="slide-title">Science Made Simple</h2>
-                            <p class="slide-description">Turn complex scientific concepts into easy-to-understand
-                                knowledge</p>
-                            <a href="#" class="slide-button">Explore Courses</a>
+                            <p class="slide-description">Turn complex scientific concepts into easy-to-understand knowledge</p>
+                            <a href="#subjects" class="slide-button">Explore Courses</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Slide 3 -->
                 <div class="carousel-slide">
-                    <div class="slide-bg"
-                        style="background-image: url('https://images.unsplash.com/photo-1522881193457-37ae97c905bf')">
-                    </div>
+                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1522881193457-37ae97c905bf')"></div>
                     <div class="slide-content">
                         <div class="slide-content-inner">
                             <span class="slide-subtitle">Speak Fluently</span>
                             <h2 class="slide-title">Master Any Language</h2>
-                            <p class="slide-description">Connect with the world through expert language instruction and
-                                practice</p>
-                            <a href="#" class="slide-button">Start Learning</a>
+                            <p class="slide-description">Connect with the world through expert language instruction and practice</p>
+                            <a href="#subjects" class="slide-button">Start Learning</a>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Navigation Controls -->
+            <button class="carousel-control prev" aria-label="Previous slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-control next" aria-label="Next slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Pagination Indicators -->
+            <div class="carousel-indicators">
+                <span class="indicator active" data-index="0"></span>
+                <span class="indicator" data-index="1"></span>
+                <span class="indicator" data-index="2"></span>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="section about-section">
+    <section id="about" class="section about-section" data-aos="fade-up">
         <div class="about-content">
             <h2>Our Learning Journey</h2>
             <p>At TutorConnect, we're not just tutors—we're knowledge navigators! Embark on an educational adventure
@@ -196,25 +202,25 @@
         <i class="fas fa-rocket" style="font-size: 4rem; color: #3498db;"></i>
     </section>
 
-    <section id="subjects" class="section">
+    <section id="subjects" class="section" data-aos="fade-up">
         <h2>Subjects We Teach</h2>
         <div class="subjects-grid">
-            <div class="subject-card">
+            <div class="subject-card" data-aos="zoom-in" data-aos-delay="100">
                 <i class="fas fa-square-root-alt"></i>
                 <h3>Mathematics</h3>
                 <p>Unlock the world of numbers with Algebra, Geometry, Calculus & more</p>
             </div>
-            <div class="subject-card">
+            <div class="subject-card" data-aos="zoom-in" data-aos-delay="200">
                 <i class="fas fa-flask"></i>
                 <h3>Science</h3>
                 <p>Explore the universe through Physics, Chemistry, Biology & beyond</p>
             </div>
-            <div class="subject-card">
+            <div class="subject-card" data-aos="zoom-in" data-aos-delay="300">
                 <i class="fas fa-language"></i>
                 <h3>Languages</h3>
                 <p>Speak fluently in English, Spanish, French & other tongues</p>
             </div>
-            <div class="subject-card">
+            <div class="subject-card" data-aos="zoom-in" data-aos-delay="400">
                 <i class="fas fa-book-open"></i>
                 <h3>Humanities</h3>
                 <p>Dive into History, Literature, Philosophy & cultural wonders</p>
@@ -222,25 +228,25 @@
         </div>
     </section>
 
-    <section id="services" class="section">
+    <section id="services" class="section" data-aos="fade-up">
         <h2>Our Superpower Services</h2>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card" data-aos="flip-left" data-aos-delay="100">
                 <i class="fas fa-calculator"></i>
                 <h3>Math Mastery</h3>
                 <p>Zap through equations and conquer numbers with our math wizards!</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" data-aos="flip-left" data-aos-delay="200">
                 <i class="fas fa-microscope"></i>
                 <h3>Science Sorcery</h3>
                 <p>Unravel the mysteries of the universe with our science magicians!</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" data-aos="flip-left" data-aos-delay="300">
                 <i class="fas fa-pen-fancy"></i>
                 <h3>Word Wizardry</h3>
                 <p>Weave tales and master communication with our language enchanters!</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" data-aos="flip-left" data-aos-delay="400">
                 <i class="fas fa-graduation-cap"></i>
                 <h3>Test Triumph</h3>
                 <p>Ace any exam with our prep superheroes by your side!</p>
@@ -248,24 +254,24 @@
         </div>
     </section>
 
-    <section id="teachers" class="section">
+    <section id="teachers" class="section" data-aos="fade-up">
         <h2>Meet Our Galactic Tutors</h2>
         <div class="teachers-grid">
-            <div class="teacher-card">
+            <div class="teacher-card" data-aos="fade-right" data-aos-delay="100">
                 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Mr. James Carter">
                 <h3>Mr. James Carter</h3>
                 <p>B.A. in History<br>12+ years teaching experience<br>Historical documentary contributor<br>Expert in
                     archival research</p>
                 <p class="specialty">Specialty: World History</p>
             </div>
-            <div class="teacher-card">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Mr. Liam O’Connor">
-                <h3>Mr. Liam O’Connor</h3>
+            <div class="teacher-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Mr. Liam O'Connor">
+                <h3>Mr. Liam O'Connor</h3>
                 <p>M.Ed. in Education<br>7+ years teaching experience<br>Certified SAT/ACT Prep Coach<br>Passionate
                     about student motivation</p>
                 <p class="specialty">Specialty: Test Preparation</p>
             </div>
-            <div class="teacher-card">
+            <div class="teacher-card" data-aos="fade-left" data-aos-delay="300">
                 <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7" alt="Ms. Olivia Bennett">
                 <h3>Ms. Olivia Bennett</h3>
                 <p>M.S. in Chemistry<br>11+ years teaching experience<br>Developed online lab simulations<br>Fluent in
@@ -275,10 +281,10 @@
         </div>
     </section>
 
-    <section id="pricing" class="section pricing-section">
+    <section id="pricing" class="section pricing-section" data-aos="fade-up">
         <h2>Choose Your Learning Adventure</h2>
         <div class="pricing-grid">
-            <div class="pricing-card">
+            <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
                 <h3>Starter Pack</h3>
                 <div class="price">₹290<span>/month</span></div>
                 <ul>
@@ -293,7 +299,8 @@
                 </ul>
                 <button>Get Started</button>
             </div>
-            <div class="pricing-card">
+            <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="200">
+                <div class="popular-tag">Most Popular</div>
                 <h3>Knowledge Quest</h3>
                 <div class="price">₹490<span>/month</span></div>
                 <ul>
@@ -308,7 +315,7 @@
                 </ul>
                 <button>Level Up</button>
             </div>
-            <div class="pricing-card">
+            <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
                 <h3>Mastermind Elite</h3>
                 <div class="price">₹790<span>/month</span></div>
                 <ul>
@@ -328,14 +335,14 @@
         </div>
     </section>
 
-    <section id="contact" class="section contact-section">
+    <section id="contact" class="section contact-section" data-aos="fade-up">
         <h2>Transmit to Our Starbase!</h2>
         <p>Warp your thoughts across the galaxy—our crew is standing by to assist!</p>
         <div class="contact-form" id="contact-form">
-            <input type="text" placeholder="Your Cosmic Identity" required>
-            <input type="email" placeholder="Your Galactic Email" required>
-            <textarea placeholder="Send your interstellar transmission..." rows="6" required></textarea>
-            <button type="submit">Engage Warp Drive!</button>
+            <input type="text" placeholder="Your Cosmic Identity" required data-aos="fade-right" data-aos-delay="100">
+            <input type="email" placeholder="Your Galactic Email" required data-aos="fade-right" data-aos-delay="200">
+            <textarea placeholder="Send your interstellar transmission..." rows="6" required data-aos="fade-right" data-aos-delay="300"></textarea>
+            <button type="submit" data-aos="zoom-in" data-aos-delay="400">Engage Warp Drive!</button>
         </div>
     </section>
 
@@ -363,8 +370,9 @@
         </div>
     </footer>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- Custom JS -->
     <script src="./script.js"></script>
 </body>
 
