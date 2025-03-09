@@ -21,6 +21,9 @@ body {
   background-color: #f5f7fa;
   color: var(--text-dark);
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  max-width: 100%;
 }
 
 section {
@@ -125,7 +128,8 @@ header {
   padding: 0.5rem 0;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
   color: var(--primary-color);
 }
 
@@ -140,7 +144,8 @@ header {
   transition: width var(--transition-speed) ease;
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
 
@@ -291,7 +296,7 @@ header {
 
 .form-group input:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.1255,255,0.1);
+  background: rgba(255, 255, 255, 0.1255, 255, 0.1);
 }
 
 .form-group input:focus {
@@ -522,15 +527,13 @@ header {
 }
 
 .slide-bg::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, 
-              rgba(15, 25, 34, 0.8) 0%, 
-              rgba(15, 25, 34, 0.6) 100%);
+  background: linear-gradient(to bottom, rgba(15, 25, 34, 0.8) 0%, rgba(15, 25, 34, 0.6) 100%);
   z-index: 2;
 }
 
@@ -683,7 +686,7 @@ header {
 }
 
 .section h2::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 80px;
   height: 4px;
@@ -715,7 +718,7 @@ header {
 }
 
 .about-content h2::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 50px;
   height: 3px;
@@ -938,7 +941,7 @@ header {
 }
 
 .teacher-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -949,7 +952,7 @@ header {
   z-index: 0;
 }
 
-.teacher-card>* {
+.teacher-card > * {
   position: relative;
   z-index: 1;
 }
@@ -1026,7 +1029,7 @@ header {
 }
 
 .contact-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -1039,7 +1042,7 @@ header {
 }
 
 .contact-section::after {
-  content: '✨';
+  content: "✨";
   position: absolute;
   font-size: 3rem;
   top: 20px;
@@ -1114,7 +1117,7 @@ footer {
 }
 
 footer::before {
-  content: '🌟';
+  content: "🌟";
   position: absolute;
   font-size: 3rem;
   top: 20px;
@@ -1123,7 +1126,7 @@ footer::before {
 }
 
 footer::after {
-  content: '🚀';
+  content: "🚀";
   position: absolute;
   font-size: 3rem;
   bottom: 20px;
@@ -1136,7 +1139,7 @@ footer::after {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: linear-gradient(45deg, #25D366, #128C7E);
+  background: linear-gradient(45deg, #25d366, #128c7e);
   color: white;
   padding: 12px 20px;
   border-radius: 50px;
@@ -1147,6 +1150,8 @@ footer::after {
   box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
   z-index: 1000;
   transition: all 0.3s ease;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .whatsapp-btn i {
@@ -1163,7 +1168,7 @@ footer::after {
 .whatsapp-btn:hover {
   transform: scale(1.1) translateY(-5px);
   box-shadow: 0 10px 20px rgba(37, 211, 102, 0.6);
-  background: linear-gradient(45deg, #128C7E, #25D366);
+  background: linear-gradient(45deg, #128c7e, #25d366);
 }
 
 /* Animations */
@@ -1209,7 +1214,8 @@ footer::after {
 }
 
 @keyframes twinkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
   }
   50% {
@@ -1233,13 +1239,21 @@ footer::after {
 }
 
 @keyframes shake {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
-  10%, 30%, 50%, 70%, 90% {
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
     transform: translateX(-5px);
   }
-  20%, 40%, 60%, 80% {
+  20%,
+  40%,
+  60%,
+  80% {
     transform: translateX(5px);
   }
 }
@@ -1266,27 +1280,22 @@ footer::after {
     background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
     transition: right 0.5s ease;
     padding: 2rem;
-  }
-
-  .nav-menu.active {
-    right: 0;
+    text-align: center;
+    display:none
   }
 
   .nav-links {
     flex-direction: column;
     align-items: center;
     margin-bottom: 2rem;
-  }
-
-  .nav-link {
-    font-size: 1.5rem;
-    padding: 1rem 0;
+    width: 100%;
   }
 
   .nav-buttons {
     flex-direction: column;
     width: 80%;
     max-width: 300px;
+    align-items: center;
   }
 
   .nav-btn {
@@ -1326,11 +1335,11 @@ footer::after {
   .slide-description {
     font-size: 1.1rem;
   }
-  
+
   .pricing-grid {
     justify-content: center;
   }
-  
+
   .pricing-card {
     width: 300px;
   }
@@ -1444,10 +1453,16 @@ footer::after {
   .whatsapp-btn {
     padding: 10px;
     border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .whatsapp-btn i {
     font-size: 1.5rem;
+    margin: 0;
   }
 
   .whatsapp-text {
@@ -1457,4 +1472,84 @@ footer::after {
   .popup-content {
     width: 90%;
   }
+}
+
+/* Fix for the horizontal sidebar and hamburger menu issues */
+
+/* First, ensure body doesn't have horizontal overflow */
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  max-width: 100%;
+}
+
+/* Fix the mobile menu positioning */
+@media screen and (max-width: 1100px) {
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+    transition: right 0.5s ease;
+    padding: 2rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    right: 0; /* Slide in from right */
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    width: 80%;
+    max-width: 300px;
+    align-items: center;
+  }
+
+  .nav-btn {
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0;
+    padding: 1rem;
+  }
+
+  /* Ensure hamburger is visible and above other elements */
+  .hamburger-menu {
+    display: flex;
+    z-index: 1002;
+  }
+}
+
+/* Ensure WhatsApp button is always visible */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 1001;
 }
