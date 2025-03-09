@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <title>TutorConnect - Find Your Perfect Tutor</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="#" class="logo">
+                    <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+                    <span class="logo-text">Tutor<span class="highlight">Connect</span></span>
+                </a>
+            </div>
+
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <nav class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#subjects" class="nav-link">Subjects</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#contact" class="nav-link">Contact Us</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="#" class="nav-btn login-btn" id="open-login">Login</a>
+                    <a href="#" class="nav-btn signup-btn" id="open-signup">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Popup -->
+    <div class="popup" id="login-popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2>Login to Your Galaxy</h2>
+                <span class="close-btn" id="close-login">&times;</span>
+            </div>
+            <div class="popup-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <input type="password" placeholder="Your Password" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn-submit">Log In</button>
+                </form>
+                <div class="popup-footer">
+                    <p>Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Popup -->
+    <div class="popup" id="signup-popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2>Join Our Galaxy</h2>
+                <span class="close-btn" id="close-signup">&times;</span>
+            </div>
+            <div class="popup-body">
+                <form id="signup-form">
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <input type="password" id="password" placeholder="Your Password" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Sign Up</button>
+                </form>
+                <div class="popup-footer">
+                    <p>Already have an account? <a href="#" id="switch-to-login">Log In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section Carousel -->
+    <!-- Hero Section with Custom Carousel -->
+    <section id="home" class="hero">
+        <div class="custom-carousel-container">
+            <div class="slides-container">
+                <!-- Slide 1 -->
+                <div class="carousel-slide">
+                    <div class="slide-bg"
+                        style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655')">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-content-inner">
+                            <span class="slide-subtitle">Master Numbers</span>
+                            <h2 class="slide-title">Expert Math Tutoring</h2>
+                            <p class="slide-description">Unlock your potential with personalized math lessons from
+                                experienced tutors</p>
+                            <a href="#" class="slide-button">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <div class="slide-bg"
+                        style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40')">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-content-inner">
+                            <span class="slide-subtitle">Discover & Explore</span>
+                            <h2 class="slide-title">Science Made Simple</h2>
+                            <p class="slide-description">Turn complex scientific concepts into easy-to-understand
+                                knowledge</p>
+                            <a href="#" class="slide-button">Explore Courses</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <div class="slide-bg"
+                        style="background-image: url('https://images.unsplash.com/photo-1522881193457-37ae97c905bf')">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-content-inner">
+                            <span class="slide-subtitle">Speak Fluently</span>
+                            <h2 class="slide-title">Master Any Language</h2>
+                            <p class="slide-description">Connect with the world through expert language instruction and
+                                practice</p>
+                            <a href="#" class="slide-button">Start Learning</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about-section">
+        <div class="about-content">
+            <h2>Our Learning Journey</h2>
+            <p>At TutorConnect, we're not just tutors—we're knowledge navigators! Embark on an educational adventure
+                where expert mentors transform complex concepts into exciting discoveries. Our mission? To spark
+                curiosity and empower every learner to conquer their academic galaxy!</p>
+        </div>
+        <i class="fas fa-rocket" style="font-size: 4rem; color: #3498db;"></i>
+    </section>
+
+    <section id="subjects" class="section">
+        <h2>Subjects We Teach</h2>
+        <div class="subjects-grid">
+            <div class="subject-card">
+                <i class="fas fa-square-root-alt"></i>
+                <h3>Mathematics</h3>
+                <p>Unlock the world of numbers with Algebra, Geometry, Calculus & more</p>
+            </div>
+            <div class="subject-card">
+                <i class="fas fa-flask"></i>
+                <h3>Science</h3>
+                <p>Explore the universe through Physics, Chemistry, Biology & beyond</p>
+            </div>
+            <div class="subject-card">
+                <i class="fas fa-language"></i>
+                <h3>Languages</h3>
+                <p>Speak fluently in English, Spanish, French & other tongues</p>
+            </div>
+            <div class="subject-card">
+                <i class="fas fa-book-open"></i>
+                <h3>Humanities</h3>
+                <p>Dive into History, Literature, Philosophy & cultural wonders</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <h2>Our Superpower Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-calculator"></i>
+                <h3>Math Mastery</h3>
+                <p>Zap through equations and conquer numbers with our math wizards!</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-microscope"></i>
+                <h3>Science Sorcery</h3>
+                <p>Unravel the mysteries of the universe with our science magicians!</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-pen-fancy"></i>
+                <h3>Word Wizardry</h3>
+                <p>Weave tales and master communication with our language enchanters!</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Test Triumph</h3>
+                <p>Ace any exam with our prep superheroes by your side!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="teachers" class="section">
+        <h2>Meet Our Galactic Tutors</h2>
+        <div class="teachers-grid">
+            <div class="teacher-card">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Mr. James Carter">
+                <h3>Mr. James Carter</h3>
+                <p>B.A. in History<br>12+ years teaching experience<br>Historical documentary contributor<br>Expert in
+                    archival research</p>
+                <p class="specialty">Specialty: World History</p>
+            </div>
+            <div class="teacher-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Mr. Liam O’Connor">
+                <h3>Mr. Liam O’Connor</h3>
+                <p>M.Ed. in Education<br>7+ years teaching experience<br>Certified SAT/ACT Prep Coach<br>Passionate
+                    about student motivation</p>
+                <p class="specialty">Specialty: Test Preparation</p>
+            </div>
+            <div class="teacher-card">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7" alt="Ms. Olivia Bennett">
+                <h3>Ms. Olivia Bennett</h3>
+                <p>M.S. in Chemistry<br>11+ years teaching experience<br>Developed online lab simulations<br>Fluent in
+                    Spanish</p>
+                <p class="specialty">Specialty: Organic Chemistry</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section pricing-section">
+        <h2>Choose Your Learning Adventure</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter Pack</h3>
+                <div class="price">₹290<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-chalkboard-teacher"></i> 4 Mind-Blowing Sessions</li>
+                    <li><i class="fas fa-envelope"></i> Email Support Superpower</li>
+                    <li><i class="fas fa-book"></i> Basic Learning Arsenal</li>
+                    <li><i class="fas fa-chart-line"></i> Weekly Progress Reports</li>
+                    <li><i class="fas fa-users"></i> Access to Cosmic Community</li>
+                    <li><i class="fas fa-download"></i> 1 Galactic Resource Download</li>
+                    <li><i class="fas fa-star"></i> Stardust Study Tips</li>
+                    <li><i class="fas fa-rocket"></i> Launchpad Learning Kit</li>
+                </ul>
+                <button>Get Started</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Knowledge Quest</h3>
+                <div class="price">₹490<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-chalkboard-teacher"></i> 8 Epic Sessions</li>
+                    <li><i class="fas fa-headset"></i> Email & Chat Power-Ups</li>
+                    <li><i class="fas fa-chart-bar"></i> Bi-Weekly Progress Tracking</li>
+                    <li><i class="fas fa-user-friends"></i> Nebula Group Study</li>
+                    <li><i class="fas fa-download"></i> 3 Cosmic Resource Downloads</li>
+                    <li><i class="fas fa-map"></i> Personalized Star Chart Plan</li>
+                    <li><i class="fas fa-lightbulb"></i> Brain-Boosting Quizzes</li>
+                    <li><i class="fas fa-globe"></i> Orbiting Study Guides</li>
+                </ul>
+                <button>Level Up</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Mastermind Elite</h3>
+                <div class="price">₹790<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-chalkboard-teacher"></i> Unlimited Learning Odyssey</li>
+                    <li><i class="fas fa-phone-volume"></i> 24/7 Mentor Access</li>
+                    <li><i class="fas fa-gem"></i> All Resources + VIP Booking</li>
+                    <li><i class="fas fa-chart-pie"></i> Daily Progress Insights</li>
+                    <li><i class="fas fa-user-tie"></i> One-on-One Cosmic Calls</li>
+                    <li><i class="fas fa-download"></i> Infinite Resource Downloads</li>
+                    <li><i class="fas fa-tachometer-alt"></i> Stellar Learning Dashboard</li>
+                    <li><i class="fas fa-video"></i> Exclusive Nebula Webinars</li>
+                    <li><i class="fas fa-crown"></i> Galactic Mentor Match</li>
+                    <li><i class="fas fa-magic"></i> Quantum Learning Hacks</li>
+                </ul>
+                <button>Become Elite</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <h2>Transmit to Our Starbase!</h2>
+        <p>Warp your thoughts across the galaxy—our crew is standing by to assist!</p>
+        <div class="contact-form" id="contact-form">
+            <input type="text" placeholder="Your Cosmic Identity" required>
+            <input type="email" placeholder="Your Galactic Email" required>
+            <textarea placeholder="Send your interstellar transmission..." rows="6" required></textarea>
+            <button type="submit">Engage Warp Drive!</button>
+        </div>
+    </section>
+
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/1234567890?text=Hello%20TutorConnect!%20I%20need%20help%20with%20my%20studies."
+        class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Chat with Us</span>
+    </a>
+
+    <footer>
+        <div class="footer-container">
+            <h2 class="footer-title">Explore the TutorConnect Universe</h2>
+            <div class="footer-links">
+                <a href="#pricing" class="footer-btn footer-pricing-btn">Discover Pricing</a>
+                <a href="#teachers" class="footer-btn footer-tutors-btn">Meet Our Tutors</a>
+            </div>
+            <p>© 2025 TutorConnect. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
