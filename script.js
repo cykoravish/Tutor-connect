@@ -1,12 +1,23 @@
 // Initialize AOS animation library
 document.addEventListener("DOMContentLoaded", () => {
-  AOS.init({
-    duration: 800,
-    easing: "ease-in-out",
-    once: true,
-  })
+  // Check if user prefers reduced motion
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-  // Hamburger menu functionality
+  // Declare AOS if it's not already available globally
+  if (typeof AOS === "undefined") {
+    console.warn("AOS is not defined. Make sure AOS library is properly included.")
+  } else {
+    // Initialize AOS with minimal animations for better performance
+    AOS.init({
+      duration: 400, // Reduce duration further
+      easing: "ease-out",
+      once: true,
+      disable: prefersReducedMotion,
+      offset: 80, // Account for fixed header
+    })
+  }
+
+  // Hamburger menu functionality with improved visibility
   const hamburger = document.querySelector(".hamburger-menu")
   const navMenu = document.querySelector(".nav-menu")
   const navLinks = document.querySelectorAll(".nav-link")
@@ -17,19 +28,39 @@ document.addEventListener("DOMContentLoaded", () => {
     item.style.setProperty("--i", index + 1)
   })
 
-  // Toggle menu on hamburger click
+  // Toggle menu on hamburger click with improved visibility
   hamburger.addEventListener("click", function () {
     this.classList.toggle("active")
     navMenu.classList.toggle("active")
 
-    // Toggle body scroll but maintain position
+    // Toggle body scroll with improved handling
     if (navMenu.classList.contains("active")) {
       document.body.style.overflow = "hidden"
-      document.body.style.position = "fixed"
-      document.body.style.width = "100%"
+      document.body.style.paddingRight = "0" // Prevent layout shift
+
+      // Ensure nav items are visible by adding a class
+      navLinks.forEach((link) => {
+        link.classList.add("visible")
+      })
+
+      navButtons.forEach((btn) => {
+        btn.classList.add("visible")
+      })
     } else {
-      // document.body.style.overflow = ""
-      document.body.style.position = "static"
+      setTimeout(() => {
+        // Delay resetting overflow to allow transition to complete
+        document.body.style.overflow = ""
+        document.body.style.paddingRight = ""
+
+        // Remove visibility class
+        navLinks.forEach((link) => {
+          link.classList.remove("visible")
+        })
+
+        navButtons.forEach((btn) => {
+          btn.classList.remove("visible")
+        })
+      }, 300)
     }
   })
 
@@ -38,8 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", () => {
       hamburger.classList.remove("active")
       navMenu.classList.remove("active")
-      document.body.style.overflow = "auto"
-      document.body.style.position = "static"
+
+      setTimeout(() => {
+        // Delay resetting overflow to allow transition to complete
+        document.body.style.overflow = ""
+        document.body.style.paddingRight = ""
+      }, 300)
     })
   })
 
@@ -64,27 +99,43 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Highlight active nav link on scroll
-  window.addEventListener("scroll", highlightNavLink)
+  // Highlight active nav link on scroll - throttled for better performance
+  let isScrolling = false
+  window.addEventListener("scroll", () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        highlightNavLink()
+        isScrolling = false
+      })
+      isScrolling = true
+    }
+  })
 
   // Add scroll animation to header
   const header = document.querySelector("header")
   let lastScrollTop = 0
+  let isHeaderAnimating = false
 
   window.addEventListener("scroll", () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    if (!isHeaderAnimating) {
+      window.requestAnimationFrame(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop
 
-    if (scrollTop > 100) {
-      header.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)"
-      header.style.background = "linear-gradient(135deg, rgba(26, 38, 52, 0.95), rgba(15, 25, 34, 0.95))"
-      header.style.backdropFilter = "blur(10px)"
-    } else {
-      header.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.2)"
-      header.style.background = "linear-gradient(135deg, #1a2634, #0f1922)"
-      header.style.backdropFilter = "none"
+        if (scrollTop > 100) {
+          header.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)"
+          header.style.background = "linear-gradient(135deg, rgba(26, 38, 52, 0.95), rgba(15, 25, 34, 0.95))"
+          header.style.backdropFilter = "blur(10px)"
+        } else {
+          header.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.2)"
+          header.style.background = "linear-gradient(135deg, #1a2634, #0f1922)"
+          header.style.backdropFilter = "none"
+        }
+
+        lastScrollTop = scrollTop
+        isHeaderAnimating = false
+      })
+      isHeaderAnimating = true
     }
-
-    lastScrollTop = scrollTop
   })
 
   // Hero Carousel Implementation
@@ -354,7 +405,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Improved smooth scrolling with header offset
+  // Improved smooth scrolling with header offset - with performance optimization
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       // Skip for empty anchors
@@ -369,15 +420,29 @@ document.addEventListener("DOMContentLoaded", () => {
         if (targetElement) {
           const headerHeight = document.querySelector("header").offsetHeight
 
-          window.scrollTo({
-            top: targetElement.offsetTop - headerHeight,
-            behavior: "smooth",
-          })
+          // Use native smooth scrolling if available and user doesn't prefer reduced motion
+          if ("scrollBehavior" in document.documentElement.style && !prefersReducedMotion) {
+            window.scrollTo({
+              top: targetElement.offsetTop - headerHeight,
+              behavior: "smooth",
+            })
+          } else {
+            // Fallback for browsers that don't support smooth scrolling
+            window.scrollTo(0, targetElement.offsetTop - headerHeight)
+          }
         }
       } catch (error) {
         console.warn("Invalid selector:", this.getAttribute("href"))
       }
     })
   })
+
+  // Lazy load images for better performance
+  if ("loading" in HTMLImageElement.prototype) {
+    // Browser supports native lazy loading
+    document.querySelectorAll("img").forEach((img) => {
+      img.loading = "lazy"
+    })
+  }
 })
 

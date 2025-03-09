@@ -17,28 +17,38 @@
   --transition-speed: 0.3s;
 }
 
-body {
-  background-color: #f5f7fa;
-  color: var(--text-dark);
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-  max-width: 100%;
-}
-
-section {
-  scroll-margin-top: 80px;
-}
-
 /* Header and Navbar Styles */
 header {
   background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
   padding: 0;
-  position: sticky;
+  position: fixed; /* Change from sticky to fixed */
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   height: auto;
+}
+
+/* Add padding to body to account for fixed header */
+body {
+  padding-top: 70px; /* Adjust based on your header height */
+  background-color: #121a24; /* Darker background to match theme */
+  color: var(--text-light);
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  max-width: 100%;
+  margin: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+section {
+  scroll-margin-top: 80px;
+  margin-bottom: 2rem;
 }
 
 .header-container {
@@ -111,6 +121,7 @@ header {
   align-items: center;
   gap: 2rem;
   transition: all 0.5s ease;
+  will-change: transform;
 }
 
 .nav-links {
@@ -296,11 +307,6 @@ header {
 
 .form-group input:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.1255, 255, 0.1);
-}
-
-.form-group input:focus {
-  outline: none;
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
   border-color: var(--primary-color);
@@ -477,7 +483,9 @@ header {
   max-height: 800px;
   overflow: hidden;
   background-color: var(--darker-bg);
-  margin-top: 0;
+  margin-top: -70px; /* Negative of the body padding-top */
+  padding-top: 70px;
+  border-bottom: 1px solid rgba(52, 152, 219, 0.2);
 }
 
 .hero-carousel {
@@ -520,6 +528,7 @@ header {
   z-index: 1;
   transform: scale(1);
   transition: transform 8s ease;
+  will-change: transform;
 }
 
 .carousel-slide.active .slide-bg {
@@ -676,6 +685,7 @@ header {
   padding: 5rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  background-color: transparent; /* Make sections transparent to show body background */
 }
 
 .section h2 {
@@ -683,6 +693,7 @@ header {
   font-size: 2.5rem;
   margin-bottom: 3rem;
   position: relative;
+  color: var(--text-light); /* Ensure section titles are light */
 }
 
 .section h2::after {
@@ -697,13 +708,17 @@ header {
   border-radius: 2px;
 }
 
+/* Match theme colors throughout the site */
 .about-section {
-  background: linear-gradient(to right, #ecf0f1, #dfe6e9);
+  background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+  color: var(--text-light);
   border-radius: 15px;
   padding: 3rem;
   display: flex;
   align-items: center;
   gap: 2rem;
+  border: 1px solid rgba(52, 152, 219, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .about-content {
@@ -711,7 +726,7 @@ header {
 }
 
 .about-content h2 {
-  color: #2c3e50;
+  color: var(--text-light);
   margin-bottom: 1rem;
   position: relative;
   text-align: left;
@@ -722,10 +737,14 @@ header {
   position: absolute;
   width: 50px;
   height: 3px;
-  background: #3498db;
+  background: var(--primary-color);
   bottom: -10px;
   left: 0;
   transform: none;
+}
+
+.about-content p {
+  color: var(--text-light);
 }
 
 .services-grid {
@@ -735,24 +754,31 @@ header {
   margin-top: 2rem;
 }
 
+/* Update service cards to match theme */
 .service-card {
-  background: #fff;
+  background: var(--dark-bg);
+  color: var(--text-light);
   padding: 2rem;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow for depth */
   transition: all 0.3s;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(52, 152, 219, 0.2); /* Add subtle border */
 }
 
 .service-card i {
   font-size: 2rem;
   color: #3498db;
   margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.service-card h3 {
+  color: var(--text-light);
+}
+
+.service-card p {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .subjects-grid {
@@ -763,7 +789,7 @@ header {
 }
 
 .subject-card {
-  background: linear-gradient(135deg, #3498db, #8e44ad);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   color: white;
   padding: 2rem;
   border-radius: 15px;
@@ -771,20 +797,24 @@ header {
   position: relative;
   overflow: hidden;
   transition: transform 0.3s;
-}
-
-.subject-card:hover {
-  transform: translateY(-10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .subject-card i {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
 }
 
+/* Update pricing section to match theme */
 .pricing-section {
-  background: #f9f9f9;
+  background: linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
+  color: var(--text-light);
   padding: 2rem;
+  border-radius: 15px;
+  margin: 2rem auto;
+  max-width: 1300px;
 }
 
 .pricing-grid {
@@ -795,8 +825,10 @@ header {
   margin-top: 2rem;
 }
 
+/* Update pricing section to match theme */
 .pricing-card {
-  background: white;
+  background: var(--dark-bg);
+  color: var(--text-light);
   padding: 2rem;
   border-radius: 10px;
   text-align: center;
@@ -827,17 +859,8 @@ header {
   font-weight: bold;
 }
 
-.pricing-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.pricing-card.featured:hover {
-  transform: translateY(-10px) scale(1.05);
-}
-
 .pricing-card h3 {
-  color: #2c3e50;
+  color: var(--text-light);
   margin-bottom: 1rem;
   font-size: 1.5rem;
 }
@@ -856,8 +879,8 @@ header {
 }
 
 .pricing-card ul li {
+  color: rgba(255, 255, 255, 0.8);
   margin: 0.6rem 0;
-  color: #666;
   font-size: 0.9rem;
   display: flex;
   align-items: center;
@@ -891,20 +914,18 @@ header {
   margin-top: 2rem;
 }
 
+/* Update teacher cards to match theme */
 .teacher-card {
-  background: #fff;
+  background: var(--dark-bg);
+  color: var(--text-light);
   padding: 2rem;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow for depth */
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
   overflow: hidden;
-}
-
-.teacher-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(52, 152, 219, 0.2); /* Add subtle border */
 }
 
 .teacher-card img {
@@ -922,22 +943,23 @@ header {
 }
 
 .teacher-card h3 {
-  color: #2c3e50;
+  color: var(--text-light);
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
 }
 
 .teacher-card p {
-  color: #666;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
   line-height: 1.6;
 }
 
 .teacher-card .specialty {
-  color: #3498db;
+  color: var(--primary-color);
   font-weight: bold;
   margin-top: 0.75rem;
   font-size: 1rem;
+  text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
 }
 
 .teacher-card::before {
@@ -958,7 +980,7 @@ header {
 }
 
 .contact-section {
-  background: linear-gradient(135deg, #1a2634, #3498db);
+  background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark));
   color: white;
   padding: 5rem 2rem;
   text-align: center;
@@ -1028,34 +1050,24 @@ header {
   transform: scale(1.1);
 }
 
+/* Remove or simplify some animations */
 .contact-section::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
-  transform: rotate(30deg);
-  z-index: 0;
-  animation: orbit 10s infinite linear;
+  animation: none; /* Remove orbit animation */
 }
 
-.contact-section::after {
-  content: "✨";
-  position: absolute;
-  font-size: 3rem;
-  top: 20px;
-  right: 20px;
-  animation: twinkle 1.5s infinite;
+.contact-section::after,
+footer::before,
+footer::after {
+  display: none; /* Remove decorative elements with animations */
 }
 
 /* Footer Styles */
 footer {
-  background: linear-gradient(135deg, #1a2634, #2c3e50);
+  background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
   padding: 3rem 2rem;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(52, 152, 219, 0.2);
 }
 
 .footer-container {
@@ -1064,12 +1076,13 @@ footer {
   text-align: center;
 }
 
+/* Remove glow animation from footer title */
 .footer-title {
+  animation: none; /* Remove glow animation from footer title */
+  text-shadow: 0 0 10px rgba(52, 152, 219, 0.7); /* Keep the shadow effect without animation */
   font-size: 2rem;
   color: #fff;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
-  animation: glow 2s infinite alternate;
 }
 
 .footer-links {
@@ -1116,24 +1129,6 @@ footer {
   color: #3498db;
 }
 
-footer::before {
-  content: "🌟";
-  position: absolute;
-  font-size: 3rem;
-  top: 20px;
-  left: 20px;
-  animation: twinkle 1.5s infinite;
-}
-
-footer::after {
-  content: "🚀";
-  position: absolute;
-  font-size: 3rem;
-  bottom: 20px;
-  right: 20px;
-  animation: orbit 10s infinite linear;
-}
-
 /* WhatsApp Button Styles */
 .whatsapp-btn {
   position: fixed;
@@ -1171,70 +1166,22 @@ footer::after {
   background: linear-gradient(45deg, #128c7e, #25d366);
 }
 
-/* Animations */
+/* Reduce animations for better performance */
 @keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
-  100% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-  }
-}
-
-@keyframes orbit {
-  0% {
-    transform: rotate(30deg);
-  }
-  100% {
-    transform: rotate(390deg);
-  }
-}
-
-@keyframes twinkle {
   0%,
   100% {
-    opacity: 0.5;
+    transform: translateY(0);
   }
   50% {
-    opacity: 1;
+    transform: translateY(-3px);
   }
 }
 
-@keyframes ripple {
-  0% {
-    transform: scale(0, 0);
-    opacity: 1;
-  }
-  20% {
-    transform: scale(25, 25);
-    opacity: 1;
-  }
+/* Simplify glow animation */
+@keyframes glow {
+  0%,
   100% {
-    opacity: 0;
-    transform: scale(40, 40);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -1262,10 +1209,27 @@ footer::after {
   animation: shake 0.5s ease-in-out;
 }
 
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 1100px) {
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
   .hamburger-menu {
     display: flex;
+    z-index: 1002;
   }
 
   .nav-menu {
@@ -1278,10 +1242,19 @@ footer::after {
     width: 100%;
     height: 100vh;
     background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
-    transition: right 0.5s ease;
-    padding: 2rem;
+    transition: right 0.3s ease;
+    padding: 4rem 2rem 2rem;
     text-align: center;
-    display:none
+    z-index: 1000;
+    display: flex;
+    overflow-y: auto;
+    overflow-x: hidden;
+    visibility: hidden; /* Hide until active */
+  }
+
+  .nav-menu.active {
+    right: 0;
+    visibility: visible; /* Show when active */
   }
 
   .nav-links {
@@ -1289,6 +1262,15 @@ footer::after {
     align-items: center;
     margin-bottom: 2rem;
     width: 100%;
+  }
+
+  .nav-link {
+    font-size: 1.3rem;
+    padding: 0.8rem 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: white; /* Ensure text is white for visibility */
   }
 
   .nav-buttons {
@@ -1342,6 +1324,18 @@ footer::after {
 
   .pricing-card {
     width: 300px;
+  }
+}
+
+/* Update body padding-top for different screen sizes */
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 60px;
+  }
+
+  .hero {
+    margin-top: -60px;
+    padding-top: 60px;
   }
 }
 
@@ -1408,7 +1402,7 @@ footer::after {
 
 @media screen and (max-width: 576px) {
   .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .logo-icon {
@@ -1425,16 +1419,17 @@ footer::after {
   }
 
   .slide-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: 0.5rem;
   }
 
   .slide-description {
+    font-size: 0.9rem;
     margin-bottom: 1.5rem;
   }
 
   .slide-button {
-    padding: 0.7rem 1.5rem;
+    padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
   }
 
@@ -1443,11 +1438,21 @@ footer::after {
   }
 
   .section {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .section h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-section {
+    padding: 1.5rem;
+  }
+
+  .service-card,
+  .subject-card {
+    padding: 1.5rem;
   }
 
   .whatsapp-btn {
@@ -1474,82 +1479,75 @@ footer::after {
   }
 }
 
-/* Fix for the horizontal sidebar and hamburger menu issues */
-
-/* First, ensure body doesn't have horizontal overflow */
-body {
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-  max-width: 100%;
-}
-
-/* Fix the mobile menu positioning */
-@media screen and (max-width: 1100px) {
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Start off-screen */
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
-    transition: right 0.5s ease;
-    padding: 2rem;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow-y: auto;
+@media screen and (max-width: 400px) {
+  .logo-text {
+    display: none;
   }
 
-  .nav-menu.active {
-    right: 0; /* Slide in from right */
+  .logo-icon {
+    font-size: 1.8rem;
   }
 
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
-    width: 100%;
-  }
-
-  .nav-link {
-    font-size: 1.5rem;
-    padding: 1rem 0;
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-buttons {
-    flex-direction: column;
-    width: 80%;
-    max-width: 300px;
-    align-items: center;
-  }
-
-  .nav-btn {
-    width: 100%;
-    text-align: center;
-    margin: 0.5rem 0;
-    padding: 1rem;
-  }
-
-  /* Ensure hamburger is visible and above other elements */
-  .hamburger-menu {
-    display: flex;
-    z-index: 1002;
+  .header-container {
+    padding: 0.8rem;
   }
 }
 
-/* Ensure WhatsApp button is always visible */
+/* Add styles for visible class */
+.nav-link.visible,
+.nav-btn.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure proper contrast for text on light backgrounds */
+.contact-form input,
+.contact-form textarea {
+  color: var(--text-dark);
+}
+
+/* Improve card hover effects */
+.service-card:hover,
+.subject-card:hover,
+.teacher-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(52, 152, 219, 0.4);
+}
+
+/* Improve buttons */
+.nav-btn,
+.slide-button,
+.pricing-card button,
+.contact-form button {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Improve popup */
+.popup-content {
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Improve WhatsApp button */
 .whatsapp-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  background: linear-gradient(45deg, #25d366, #128c7e);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  transition: all 0.3s ease;
   opacity: 1 !important;
   visibility: visible !important;
-  z-index: 1001;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
