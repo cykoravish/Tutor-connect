@@ -5,11 +5,6 @@ import { validationResult } from "express-validator"
 import { sanitizeInput } from "../utils/sanitize.js"
 import { validateRegistration } from "../middlewares/validators.js"
 
-/**
- * Register a new user
- * @route POST /api/auth/register
- * @access Public
- */
 export const registerUser = [
   // Apply validation middleware
   ...validateRegistration(),
@@ -104,11 +99,6 @@ export const registerUser = [
   },
 ]
 
-/**
- * Login user
- * @route POST /api/auth/login
- * @access Public
- */
 export const loginUser = async (req, res) => {
   try {
     // Extract login credentials from request body
@@ -181,11 +171,6 @@ export const loginUser = async (req, res) => {
   }
 }
 
-/**
- * Logout user
- * @route GET /api/auth/logout
- * @access Public
- */
 export const logout = (req, res) => {
   // Clear the auth cookie by setting it to expire immediately
   res.cookie("auth_token", "", {
@@ -200,11 +185,6 @@ export const logout = (req, res) => {
   })
 }
 
-/**
- * Get user profile
- * @route GET /api/auth/profile
- * @access Private
- */
 export const profile = async (req, res) => {
   try {
     // Get user from database (excluding password)
