@@ -1,4 +1,4 @@
-import { check } from "express-validator"
+import { check } from "express-validator";
 
 export const validateRegistration = () => [
   check("name")
@@ -32,5 +32,4 @@ export const validateRegistration = () => [
     .withMessage("Password must contain at least one number")
     .matches(/[^a-zA-Z0-9]/)
     .withMessage("Password must contain at least one special character"),
-]
-
+];
