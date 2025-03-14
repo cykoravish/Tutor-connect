@@ -682,4 +682,64 @@ document.addEventListener("DOMContentLoaded", async () => {
       img.loading = "lazy";
     });
   }
+
+  const tutorOptionsPopup = document.getElementById("tutor-options-popup");
+  const joinAsTutorBtn = document.getElementById("join-as-tutor");
+  const closeTutorOptions = document.getElementById("close-tutor-options");
+  const tutorLoginBtn = document.getElementById("tutor-login");
+  const tutorSignupBtn = document.getElementById("tutor-signup");
+  const lookingForTutorBtn = document.getElementById("looking-for-tutor");
+
+  // Handle "Looking for Tutor" button click
+  if (lookingForTutorBtn) {
+    lookingForTutorBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      // Redirect to the find tutor page
+      window.location.href = "/find-tutor";
+    });
+  }
+
+  // Handle "Join as Tutor" button click
+  if (joinAsTutorBtn) {
+    joinAsTutorBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openPopup(tutorOptionsPopup);
+    });
+  }
+
+  // Close tutor options popup
+  if (closeTutorOptions) {
+    closeTutorOptions.addEventListener("click", () => {
+      closePopup(tutorOptionsPopup);
+    });
+  }
+
+  // Handle tutor login option
+  if (tutorLoginBtn) {
+    tutorLoginBtn.addEventListener("click", () => {
+      closePopup(tutorOptionsPopup);
+      setTimeout(() => {
+        openPopup(loginPopup);
+      }, 400);
+    });
+  }
+
+  // Handle tutor signup option
+  if (tutorSignupBtn) {
+    tutorSignupBtn.addEventListener("click", () => {
+      closePopup(tutorOptionsPopup);
+      setTimeout(() => {
+        openPopup(signupPopup);
+      }, 400);
+    });
+  }
+
+  // Close tutor options popup when clicking outside
+  if (tutorOptionsPopup) {
+    tutorOptionsPopup.addEventListener("click", (e) => {
+      if (e.target === tutorOptionsPopup) {
+        closePopup(tutorOptionsPopup);
+      }
+    });
+  }
 });

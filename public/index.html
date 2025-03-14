@@ -47,14 +47,29 @@
                 </ul>
                 <div class="nav-buttons">
                     <!-- These buttons will be shown when user is logged out -->
-                    <a href="#" class="nav-btn login-btn" id="open-login">Login</a>
-                    <a href="#" class="nav-btn signup-btn" id="open-signup">Sign Up</a>
+                    <a href="/find-tutor" class="nav-btn student-btn" id="looking-for-tutor">Looking for Tutor</a>
+                    <a href="#" class="nav-btn tutor-btn" id="join-as-tutor">Join as Tutor</a>
+
                     <!-- These elements will be shown when user is logged in -->
                     <span id="user-name" style="display: none; margin-right: 10px; color: var(--primary-color);"></span>
-                    <a href="#" class="nav-btn login-btn" id="user-profile" style="display: none;">My Profile</a>
-                    <a href="#" class="nav-btn signup-btn" id="logout-btn" style="display: none;">Logout</a>
+                    <a href="#" class="nav-btn profile-btn" id="user-profile" style="display: none;">My Profile</a>
+                    <a href="#" class="nav-btn logout-btn" id="logout-btn" style="display: none;">Logout</a>
                 </div>
             </nav>
+
+            <!-- Add the tutor options popup -->
+            <div id="tutor-options-popup" class="popup">
+                <div class="popup-content">
+                    <!-- <span class="close-popup" id="close-tutor-options">&times;</span> -->
+                    <h2>Join as a Tutor</h2>
+                    <p>Already have an account or need to create one?</p>
+                    <div class="tutor-options-buttons">
+                        <button class="btn-option" id="tutor-login">Login</button>
+                        <button class="btn-option" id="tutor-signup">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </header>
 
