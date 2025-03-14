@@ -46,8 +46,13 @@
                     <li><a href="#contact" class="nav-link">Contact Us</a></li>
                 </ul>
                 <div class="nav-buttons">
+                    <!-- These buttons will be shown when user is logged out -->
                     <a href="#" class="nav-btn login-btn" id="open-login">Login</a>
                     <a href="#" class="nav-btn signup-btn" id="open-signup">Sign Up</a>
+                    <!-- These elements will be shown when user is logged in -->
+                    <span id="user-name" style="display: none; margin-right: 10px; color: var(--primary-color);"></span>
+                    <a href="#" class="nav-btn login-btn" id="user-profile" style="display: none;">My Profile</a>
+                    <a href="#" class="nav-btn signup-btn" id="logout-btn" style="display: none;">Logout</a>
                 </div>
             </nav>
         </div>
@@ -138,39 +143,48 @@
         <div class="hero-carousel">
             <div class="carousel-container">
                 <div class="carousel-slide active">
-                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655')"></div>
+                    <div class="slide-bg"
+                        style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655')">
+                    </div>
                     <div class="slide-content">
                         <div class="slide-content-inner">
                             <h2 class="slide-title">Expert Math Tutoring</h2>
-                            <p class="slide-description">Unlock your potential with personalized math lessons from experienced tutors</p>
+                            <p class="slide-description">Unlock your potential with personalized math lessons from
+                                experienced tutors</p>
                             <a href="#pricing" class="slide-button">Learn More</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="carousel-slide">
-                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40')"></div>
+                    <div class="slide-bg"
+                        style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40')">
+                    </div>
                     <div class="slide-content">
                         <div class="slide-content-inner">
                             <h2 class="slide-title">Science Made Simple</h2>
-                            <p class="slide-description">Turn complex scientific concepts into easy-to-understand knowledge</p>
+                            <p class="slide-description">Turn complex scientific concepts into easy-to-understand
+                                knowledge</p>
                             <a href="#subjects" class="slide-button">Explore Courses</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="carousel-slide">
-                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1522881193457-37ae97c905bf')"></div>
+                    <div class="slide-bg"
+                        style="background-image: url('https://images.unsplash.com/photo-1522881193457-37ae97c905bf')">
+                    </div>
                     <div class="slide-content">
                         <div class="slide-content-inner">
                             <h2 class="slide-title">Master Any Language</h2>
-                            <p class="slide-description">Connect with the world through expert language instruction and practice</p>
+                            <p class="slide-description">Connect with the world through expert language instruction and
+                                practice</p>
                             <a href="#teachers" class="slide-button">Start Learning</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Navigation Controls -->
             <button class="carousel-control prev" aria-label="Previous slide">
                 <i class="fas fa-chevron-left"></i>
@@ -178,7 +192,7 @@
             <button class="carousel-control next" aria-label="Next slide">
                 <i class="fas fa-chevron-right"></i>
             </button>
-            
+
             <!-- Pagination Indicators -->
             <div class="carousel-indicators">
                 <span class="indicator active" data-index="0"></span>
@@ -337,7 +351,8 @@
         <div class="contact-form" id="contact-form">
             <input type="text" placeholder="Your Cosmic Identity" required data-aos="fade-right" data-aos-delay="100">
             <input type="email" placeholder="Your Galactic Email" required data-aos="fade-right" data-aos-delay="200">
-            <textarea placeholder="Send your interstellar transmission..." rows="6" required data-aos="fade-right" data-aos-delay="300"></textarea>
+            <textarea placeholder="Send your interstellar transmission..." rows="6" required data-aos="fade-right"
+                data-aos-delay="300"></textarea>
             <button type="submit" data-aos="zoom-in" data-aos-delay="400">Engage Warp Drive!</button>
         </div>
     </section>
@@ -375,4 +390,3 @@
 </body>
 
 </html>
-

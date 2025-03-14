@@ -146,11 +146,10 @@ export const loginUser = async (req, res) => {
     res.cookie("auth_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", // Only send over HTTPS in production
-      sameSite: "lax", // Provides CSRF protection
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
       path: "/",
     });
-
     // Return success response with user data (excluding password)
     const userResponse = {
       id: user._id,

@@ -1,7 +1,25 @@
-import { signupUser } from "./services/api.js";
+import {
+  signupUser,
+  loginUser,
+  logoutUser,
+  checkAuth,
+} from "./services/api.js";
+import { setUserData, clearUserData, updateAuthUI } from "./auth-utils.js";
 
 // Initialize AOS animation library
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const { isAuthenticated, user } = await checkAuth();
+    if (isAuthenticated && user) {
+      setUserData(user);
+    }
+  } catch (error) {
+    console.error("Auth check failed:", error);
+    clearUserData(); // Clear any stale data
+  }
+
+  // Update UI based on authentication state
+  updateAuthUI();
   // Check if user prefers reduced motion
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
@@ -83,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300);
     });
   });
-  
+
   // Close menu when clicking on a navbar buttons
   navButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -364,22 +382,73 @@ document.addEventListener("DOMContentLoaded", () => {
   // Form submission handling with validation feedback
   const loginForm = document.getElementById("login-form");
   if (loginForm) {
-    loginForm.addEventListener("submit", function (e) {
+    loginForm.addEventListener("submit", async function (e) {
       e.preventDefault();
 
-      // Add success animation
+      // Get form values
+      const email = this.querySelector('input[type="email"]').value.trim();
+      const password = this.querySelector(
+        'input[type="password"]'
+      ).value.trim();
       const button = this.querySelector(".btn-submit");
-      button.innerHTML = "Logging in...";
-      button.disabled = true;
+      try {
+        // Client-side validation
+        if (!email) {
+          throw new Error("Email is required");
+        }
+        if (!password) {
+          throw new Error("Password is required");
+        }
 
-      // Simulate login process
-      setTimeout(() => {
-        alert("Login successful! Welcome back to the galaxy.");
+        // Show loading state
+        button.innerHTML = "Logging in...";
+        button.disabled = true;
+
+        // Make API call
+        const response = await loginUser({ email, password });
+
+        // Store user data
+        setUserData(response.user);
+
+        // Update UI
+        updateAuthUI();
+
+        // Success notification
+        Toastify({
+          text: "Login successful! Welcome back.",
+          duration: 3000,
+          newWindow: true,
+          close: true,
+          gravity: "top",
+          position: "center",
+          stopOnFocus: true,
+          style: {
+            background: "linear-gradient(to right, #1747d2, #49a0e8)",
+          },
+        }).showToast();
+
+        // Close popup and reset form
         closePopup(loginPopup);
         this.reset();
+      } catch (error) {
+        // Error handling
+        Toastify({
+          text: error.message || "Login failed. Please check your credentials.",
+          duration: 3000,
+          newWindow: true,
+          close: true,
+          gravity: "top",
+          position: "left",
+          stopOnFocus: true,
+          style: {
+            background: "#FF0000",
+          },
+        }).showToast();
+      } finally {
+        // Reset button state
         button.innerHTML = "Log In";
         button.disabled = false;
-      }, 1000);
+      }
     });
   }
 
@@ -387,14 +456,16 @@ document.addEventListener("DOMContentLoaded", () => {
   if (signupForm) {
     signupForm.addEventListener("submit", async function (e) {
       e.preventDefault();
-  
+
       // Get form values
       const name = this.querySelector('input[type="text"]').value.trim();
       const email = this.querySelector('input[type="email"]').value.trim();
       const password = document.getElementById("password").value.trim();
-      const confirmPassword = document.getElementById("confirm-password").value.trim();
+      const confirmPassword = document
+        .getElementById("confirm-password")
+        .value.trim();
       const button = this.querySelector(".btn-submit");
-  
+
       try {
         // Client-side validation
         // Name validation
@@ -407,16 +478,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (name.length > 50) {
           throw new Error("Name cannot be more than 50 characters");
         }
-  
+
         // Email validation
         if (!email) {
           throw new Error("Email is required");
         }
-        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        const emailRegex =
+          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
         if (!emailRegex.test(email)) {
           throw new Error("Please provide a valid email");
         }
-  
+
         // Password validation
         if (!password) {
           throw new Error("Password is required");
@@ -425,33 +497,46 @@ document.addEventListener("DOMContentLoaded", () => {
           throw new Error("Password must be at least 8 characters");
         }
         if (!/[a-z]/.test(password)) {
-          throw new Error("Password must contain at least one lowercase letter");
+          throw new Error(
+            "Password must contain at least one lowercase letter"
+          );
         }
         if (!/[A-Z]/.test(password)) {
-          throw new Error("Password must contain at least one uppercase letter");
+          throw new Error(
+            "Password must contain at least one uppercase letter"
+          );
         }
         if (!/[0-9]/.test(password)) {
           throw new Error("Password must contain at least one number");
         }
         if (!/[^a-zA-Z0-9]/.test(password)) {
-          throw new Error("Password must contain at least one special character");
+          throw new Error(
+            "Password must contain at least one special character"
+          );
         }
         if (password !== confirmPassword) {
-          const confirmPasswordInput = document.getElementById("confirm-password");
+          const confirmPasswordInput =
+            document.getElementById("confirm-password");
           confirmPasswordInput.classList.add("shake");
           setTimeout(() => {
             confirmPasswordInput.classList.remove("shake");
           }, 500);
           throw new Error("Passwords do not match!");
         }
-  
+
         // Show loading state
         button.innerHTML = "Creating account...";
         button.disabled = true;
-  
+
         // Make API call using the imported function
         const response = await signupUser({ name, email, password });
-  
+
+        // Store user data
+        setUserData(response.user);
+
+        // Update UI
+        updateAuthUI();
+
         // Success handling
         Toastify({
           text: response.message || "Signup successful",
@@ -486,6 +571,61 @@ document.addEventListener("DOMContentLoaded", () => {
         // Reset button state
         button.innerHTML = "Sign Up";
         button.disabled = false;
+      }
+    });
+  }
+
+  // Logout functionality
+  const logoutBtn = document.getElementById("logout-btn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async function (e) {
+      e.preventDefault();
+
+      try {
+        // Show loading state
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        this.disabled = true;
+
+        // Call logout API
+        await logoutUser();
+
+        // Clear user data
+        clearUserData();
+
+        // Update UI
+        updateAuthUI();
+
+        // Success notification
+        Toastify({
+          text: "Logged out successfully",
+          duration: 3000,
+          newWindow: true,
+          close: true,
+          gravity: "top",
+          position: "center",
+          stopOnFocus: true,
+          style: {
+            background: "linear-gradient(to right, #1747d2, #49a0e8)",
+          },
+        }).showToast();
+      } catch (error) {
+        // Error handling
+        Toastify({
+          text: error.message || "Logout failed",
+          duration: 3000,
+          newWindow: true,
+          close: true,
+          gravity: "top",
+          position: "left",
+          stopOnFocus: true,
+          style: {
+            background: "#FF0000",
+          },
+        }).showToast();
+      } finally {
+        // Reset button state
+        this.innerHTML = "Logout";
+        this.disabled = false;
       }
     });
   }
