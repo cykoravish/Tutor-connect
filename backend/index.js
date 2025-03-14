@@ -29,10 +29,24 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" })); // Parse URL-enc
 app.use(cookieParser());
 app.use(helmet());
 
+
+const allowedOrigins = (process.env.ALLOWED_ORIGIN || "http://127.0.0.1:5503")
+  .split(",")
+  .map(origin => origin.trim())
+  .filter(Boolean);
+
 // CORS configuration for cookies
 app.use(
   cors({
-    origin: process.env.ALLOWED_ORIGIN || "http://localhost:5500",
+    origin: (origin, callback) => {
+      console.log('Request Origin:', origin);
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, origin);
+      } else {
+        console.log('Blocked Origin:', origin);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: [
