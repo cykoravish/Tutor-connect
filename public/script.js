@@ -83,6 +83,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300);
     });
   });
+  
+  // Close menu when clicking on a navbar buttons
+  navButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+
+      setTimeout(() => {
+        // Delay resetting overflow to allow transition to complete
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
+      }, 300);
+    });
+  });
 
   // Add active class to current section in navbar
   function highlightNavLink() {
