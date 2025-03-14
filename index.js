@@ -85,11 +85,6 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cookieParser());
 
 // CORS setup
-const allowedOrigins = (process.env.ALLOWED_ORIGIN || "")
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean); // Filter out empty strings
-
 app.use(
   cors({
     origin: process.env.ALLOWED_ORIGIN,
@@ -160,7 +155,7 @@ app.use((err, req, res, next) => {
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
+      console.log(`🚀 Server running on port $ http://localhost:${PORT}`);
     });
   })
   .catch((error) => {
